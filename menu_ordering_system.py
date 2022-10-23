@@ -1,3 +1,12 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""
+menu_ordering_system.py: Evive engineering take home assessment dealing with a menu ordering system.
+"""
+__author__ = "Joonbo Shim"
+__email__= "joonbo@gmail.com"
+
+# Standard Python Library
 from collections import Counter
 
 # Global lists for menu items
@@ -145,7 +154,7 @@ def checkMissing(order):
         String of error message if missing item is detected. Else, returns 0
     """
     
-    if '1' and '2' not in order:
+    if '1' not in order and '2' not in order:
         return "Unable to process: Main is missing, Side is missing"
     elif '1' not in order:
         return "Unable to process: Main is missing"
@@ -171,7 +180,7 @@ def findMenu(order):
     
     if 'Breakfast' in order:
         # Isolate the numbers
-        order = order.replace('Breakfast ', '')
+        order = order.replace('Breakfast', '')
         order = order.replace(',', '')
         order = order.replace(' ', '')
 
@@ -185,11 +194,11 @@ def findMenu(order):
         # At breakfast, only multiple cups of coffee can be ordered
         dups = findDuplicates(order)
         if '1' and '2' in dups:
-            return "Unable to process: Eggs and Toast cannot be ordered more than once."
+            return "Unable to process: Eggs and Toast cannot be ordered more than once"
         elif '1' in dups:
-            return "Unable to process: Eggs cannot be ordered more than once."
+            return "Unable to process: Eggs cannot be ordered more than once"
         elif '2' in dups:
-            return "Unable to process: Toast cannot be ordered more than once."        
+            return "Unable to process: Toast cannot be ordered more than once"        
         
         main = 1
         side = 1
@@ -197,12 +206,12 @@ def findMenu(order):
         # If no drink is ordered, return water
         if '3' not in order:
             drink = 'Water'
-        bOrder = Breakfast(main, side, drink)
+        bOrder = str(Breakfast(main, side, drink))
         return bOrder
     
     elif 'Lunch' in order:
         # Isolate the numbers
-        order = order.replace('Lunch ', '')
+        order = order.replace('Lunch', '')
         order = order.replace(',', '')
         order = order.replace(' ', '')
         
@@ -215,11 +224,11 @@ def findMenu(order):
         # At lunch, only multiple sides can be ordered
         dups = findDuplicates(order)
         if '1' and '3' in dups:
-            return "Unable to process: Sandwich and Soda cannot be ordered more than once."
+            return "Unable to process: Sandwich and Soda cannot be ordered more than once"
         elif '1' in dups:
-            return "Unable to process: Sandwich cannot be ordered more than once."
+            return "Unable to process: Sandwich cannot be ordered more than once"
         elif '3' in dups:
-            return "Unable to process: Soda cannot be ordered more than once."        
+            return "Unable to process: Soda cannot be ordered more than once"        
         
         main = 1
         side = len(order) - 2
@@ -229,18 +238,26 @@ def findMenu(order):
             drink = 'Water'
             side = len(order) - 1
         
-        lOrder = Lunch(main, side, drink)
+        lOrder = str(Lunch(main, side, drink))
         return lOrder
     
     elif 'Dinner' in order:
         # Isolate the numbers
-        order = order.replace('Dinner ', '')
+        order = order.replace('Dinner', '')
         order = order.replace(',', '')
         order = order.replace(' ', '')
         
         # Check if order doesn't contains main, side, or dessert
         missing = checkMissing(order)
-        if missing != 0:
+        if missing != 0:                        
+            if '4' not in order and '1' not in order and '2' not in order:
+                return "Unable to process: Main is missing, Side is missing, Dessert is missing"
+            elif '4' not in order and '1' not in order:
+                return "Unable to process: Main is missing, Dessert is missing"
+            elif '4' not in order and '2' not in order:
+                return "Unable to process: Side is missing, Dessert is missing"
+            elif '4' not in order:
+                return "Unable to process: Dessert is missing"
             return missing
         if '4' not in order:
             return "Unable to process: Dessert is missing"
@@ -249,33 +266,33 @@ def findMenu(order):
         # No multiples can be ordered
         dups = findDuplicates(order)
         if len(dups) == 4:
-            return "Unable to process: Steak, Potatoes, Wine, and Cake cannot be ordered more than once."
+            return "Unable to process: Steak, Potatoes, Wine, and Cake cannot be ordered more than once"
         if len(dups) == 3 and '1' and '2' and '3' in dups:
-            return "Unable to process: Steak, Potatoes, and Wine cannot be ordered more than once."
+            return "Unable to process: Steak, Potatoes, and Wine cannot be ordered more than once"
         if len(dups) == 3 and '1' and '2' and '4' in dups:
-            return "Unable to process: Steak, Potatoes, and Cake cannot be ordered more than once."
+            return "Unable to process: Steak, Potatoes, and Cake cannot be ordered more than once"
         if len(dups) == 3 and '2' and '3' and '4' in dups:
-            return "Unable to process: Potatoes, Wine, and Cake cannot be ordered more than once."
+            return "Unable to process: Potatoes, Wine, and Cake cannot be ordered more than once"
         if len(dups) == 2 and '1' and '2' in dups:
-            return "Unable to process: Steak and Potatoes cannot be ordered more than once."
+            return "Unable to process: Steak and Potatoes cannot be ordered more than once"
         if len(dups) == 2 and '1' and '3' in dups:
-            return "Unable to process: Steak and Wine cannot be ordered more than once."
+            return "Unable to process: Steak and Wine cannot be ordered more than once"
         if len(dups) == 2 and '1' and '4' in dups:
-            return "Unable to process: Steak and Cake cannot be ordered more than once."
+            return "Unable to process: Steak and Cake cannot be ordered more than once"
         if len(dups) == 2 and '2' and '3' in dups:
-            return "Unable to process: Potatoes and Wine cannot be ordered more than once."
+            return "Unable to process: Potatoes and Wine cannot be ordered more than once"
         if len(dups) == 2 and '2' and '4' in dups:
-            return "Unable to process: Potatoes and Cake cannot be ordered more than once."
+            return "Unable to process: Potatoes and Cake cannot be ordered more than once"
         if len(dups) == 2 and '3' and '4' in dups:
-            return "Unable to process: Wine and Cake cannot be ordered more than once."
+            return "Unable to process: Wine and Cake cannot be ordered more than once"
         if '1' in dups:
-            return "Unable to process: Steak cannot be ordered more than once."
+            return "Unable to process: Steak cannot be ordered more than once"
         if '2' in dups:
-            return "Unable to process: Potatoes cannot be ordered more than once."
+            return "Unable to process: Potatoes cannot be ordered more than once"
         if '3' in dups:
-            return "Unable to process: Wine cannot be ordered more than once."  
+            return "Unable to process: Wine cannot be ordered more than once"  
         if '4' in dups:
-            return "Unable to process: Cake cannot be ordered more than once."
+            return "Unable to process: Cake cannot be ordered more than once"
         
         main = 1
         side = 1
@@ -284,5 +301,5 @@ def findMenu(order):
         if '3' not in order:
             drink = 0
         
-        dOrder = Dinner(main, side, drink, dessert)
+        dOrder = str(Dinner(main, side, drink, dessert))
         return dOrder
