@@ -1,4 +1,5 @@
 # Menu Ordering System
+## Created by [Joonbo Shim](joonbo@gmail.com)
 
 Create a system that takes orders for breakfast, lunch, and dinner. 
 
