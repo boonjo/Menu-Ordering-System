@@ -37,6 +37,7 @@ Consider the following menus:
 #### Sample Input/Output
 
 **In:** Breakfast 1,2,3
+
 **Out:** Eggs, Toast, Coffee 
 
 **In:** Breakfast 2,3,1
