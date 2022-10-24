@@ -8,6 +8,7 @@ __email__= "joonbo@gmail.com"
 
 # Standard Python Library
 from collections import Counter
+import sys
 
 # Global lists for menu items
 BREAKFAST = ["Eggs", "Toast", "Coffee"] 
@@ -303,3 +304,6 @@ def findMenu(order):
         
         dOrder = str(Dinner(main, side, drink, dessert))
         return dOrder
+    
+if __name__ == "__main__":
+    print(findMenu(''.join(sys.argv[1:])))
