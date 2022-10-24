@@ -2,9 +2,39 @@
 
 Create a system that takes orders for breakfast, lunch, and dinner. 
 
+## Getting Started
 
+menu_ordering_system.py is the source code and test_menu.py is the testing script. 
 
-Consider the following menus:
+There are two executable files included as well with the python program names.
+
+### Prerequisites
+>Python3 is required to run both menu_ordering_system.py and test_menu.py
+
+To run menu_ordering_system.py, look below for an example.
+
+**Example:**
+
+```sh
+python menu_ordering_system.py Breakfast 1,2,3
+
+Eggs, Toast, Coffee 
+```
+
+To run test_menu.py, look below for an example.
+```sh
+python test_menu.py
+....................
+----------------------------------------------------------------------
+Ran 20 tests in 0.001s
+
+OK
+```
+Same logic applies for the executable files.
+
+---
+
+### Consider the following menus:
 
 #### Breakfast
 |   Main  |   Side   |   Drink   |
@@ -41,6 +71,7 @@ Consider the following menus:
 **Out:** Eggs, Toast, Coffee 
 
 **In:** Breakfast 2,3,1
+
 **Out:** Eggs, Toast, Coffee 
 
 **In:** Breakfast 1,2,3,3,3
@@ -55,7 +86,7 @@ Consider the following menus:
 **In:** Lunch 1,2
 **Out:** Sandwich, Chips, Water
 
-**In:** Lunch 1,1,2, 3
+**In:** Lunch 1,1,2,3
 **Out:** Unable to process: Sandwich cannot be ordered more than once
 
 **In:** Lunch 1,2,2
